@@ -5,6 +5,8 @@ module Wicked::Controller::Concerns::RenderRedirect
   def render_wizard(resource = nil, options = {})
     process_resource!(resource)
 
+    @wicked_redirect_params ||= options
+    
     if @skip_to
       redirect_to wizard_path(@skip_to, @wicked_redirect_params || {}), options
     else
@@ -51,4 +53,3 @@ module Wicked::Controller::Concerns::RenderRedirect
     redirect_to wicked_final_redirect_path, options
   end
 end
-
